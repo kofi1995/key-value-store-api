@@ -41,7 +41,9 @@ describe("GET /store/:key", () => {
 
         jest.useRealTimers();
     });
+});
 
+describe("POST /store", () => {
     it("should store data with string key and string value", async () => {
         const store = app.get('KeyValueStore');
         const res = await request(app).post(
@@ -154,7 +156,9 @@ describe("GET /store/:key", () => {
         expect(res.statusCode).toBe(409);
         expect(store.get('key1')).toBe('12345');
     });
+});
 
+describe("DELETE /store/:key", () => {
     it("should delete key if it exists", async () => {
         const store = app.get('KeyValueStore');
         store.add('key1', '12345');

@@ -42,6 +42,8 @@ describe("GET /store/:key", () => {
         expect(res.statusCode).toBe(404);
         jest.useRealTimers();
     }));
+});
+describe("POST /store", () => {
     it("should store data with string key and string value", () => __awaiter(void 0, void 0, void 0, function* () {
         const store = app_1.default.get('KeyValueStore');
         const res = yield (0, supertest_1.default)(app_1.default).post("/store").send({ key: 'key1', value: '123456' });
@@ -114,6 +116,8 @@ describe("GET /store/:key", () => {
         expect(res.statusCode).toBe(409);
         expect(store.get('key1')).toBe('12345');
     }));
+});
+describe("DELETE /store/:key", () => {
     it("should delete key if it exists", () => __awaiter(void 0, void 0, void 0, function* () {
         const store = app_1.default.get('KeyValueStore');
         store.add('key1', '12345');
@@ -134,5 +138,6 @@ describe("GET /store/:key", () => {
         });
         const res = yield (0, supertest_1.default)(app_1.default).delete("/store/key1");
         expect(res.statusCode).toBe(404);
+        jest.useRealTimers();
     }));
 });
