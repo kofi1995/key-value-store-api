@@ -184,5 +184,7 @@ describe("GET /store/:key", () => {
             "/store/key1"
         );
         expect(res.statusCode).toBe(404);
+
+        jest.useRealTimers();
     });
 });
